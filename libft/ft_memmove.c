@@ -1,22 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/12 14:04:36 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/06/19 15:12:40 by dbredykh         ###   ########.fr       */
+/*   Created: 2023/04/19 15:47:39 by dbredykh          #+#    #+#             */
+/*   Updated: 2023/04/23 16:39:42 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "libft.h"
 
-# include <stdio.h>
-# include <unistd.h>
-# include <signal.h>
-# include <stdlib.h>
-# include "../libft/libft.h"
+void	*ft_memmove(void *dest, const void *src, size_t len)
+{
+	unsigned char	*s;
+	unsigned char	*d;
 
-#endif
+	s = (unsigned char *)src;
+	d = (unsigned char *)dest;
+	if (!src && !dest)
+		return (dest);
+	if (src < dest)
+		while (len--)
+			d[len] = s[len];
+	else
+		while (len--)
+			*d++ = *s++;
+	return (dest);
+}
