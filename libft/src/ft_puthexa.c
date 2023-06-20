@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_puthexa.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/12 14:04:36 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/06/19 15:12:40 by dbredykh         ###   ########.fr       */
+/*   Created: 2023/05/11 20:35:54 by dbredykh          #+#    #+#             */
+/*   Updated: 2023/06/19 16:21:35 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "../inc/libft.h"
 
-# include <stdio.h>
-# include <unistd.h>
-# include <signal.h>
-# include <stdlib.h>
-# include "../libft/inc/libft.h"
+int	ft_puthexa(unsigned long long n, char c)
+{
+	unsigned long long	count;
 
-#endif
+	count = 0;
+	if (n >= 16)
+		count += ft_puthexa(n / 16, c);
+	if (c == 'x')
+		ft_putchar("0123456789abcdef"[n % 16]);
+	else if (c == 'X')
+		ft_putchar("0123456789ABCDEF"[n % 16]);
+	count++;
+	return (count);
+}

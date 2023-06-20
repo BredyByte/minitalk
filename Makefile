@@ -16,16 +16,15 @@ LIBFT_ARCH = libft/libft.a
 
 .SILENT:
 
-R = \033[31;1m
-G = \033[32;1m
-B = \033[34;1m
-M = \033[35;1m
-C = \033[36;1m
-Y = \033[33;1m
+R = \033[1;31m
+G = \033[1;32m
+C = \033[1;36m
+O = \033[1;38;5;208m
+P = \033[1;38;5;141m
 END = \033[0m
 
 all: $(CLIENT_NAME) $(SERVER_NAME)
-	@echo "\n$(G)[Compiled $(C)'$@' $(G)successfully]\n$(END)"
+	@echo "\n$(P)[Compiled $(C)'$(word 1,$^)' $(word 2,$^)' $(G)successfully]\n$(END)"
 
 $(CLIENT_NAME): $(CLIENT_SRC) $(LIBFT_ARCH)
 	$(CC) $(CFLAGS) -o $@ $(CLIENT_SRC) $(LIBFT_ARCH)
@@ -38,10 +37,9 @@ $(LIBFT_ARCH):
 
 clean:
 	$(MAKE) -C libft clean
-	@echo "\n$(Y)[Cleaned $(C) $(NAME) objects $(Y)successfully]\n$(END)"
 
-fclean: clean
+fclean:
 	$(MAKE) -C libft fclean
 	$(REMOVE) $(SERVER_NAME) $(CLIENT_NAME)
-
+	@echo "$(R)[Removed $(C)'$(SERVER_NAME)' and $(C)'$(CLIENT_NAME)' $(G)successfully]\n$(END)"
 re: fclean all

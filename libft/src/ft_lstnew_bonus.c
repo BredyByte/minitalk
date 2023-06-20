@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/12 14:04:36 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/06/19 15:12:40 by dbredykh         ###   ########.fr       */
+/*   Created: 2023/04/28 15:22:37 by dbredykh          #+#    #+#             */
+/*   Updated: 2023/06/19 15:58:03 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "../inc/libft.h"
 
-# include <stdio.h>
-# include <unistd.h>
-# include <signal.h>
-# include <stdlib.h>
-# include "../libft/inc/libft.h"
+t_list	*ft_lstnew(void *content)
+{
+	t_list	*new_list;
 
-#endif
+	new_list = malloc(sizeof(t_list));
+	if (!new_list)
+		return (NULL);
+	new_list->content = content;
+	new_list->next = NULL;
+	return (new_list);
+}

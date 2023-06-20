@@ -1,22 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/12 14:04:36 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/06/19 15:12:40 by dbredykh         ###   ########.fr       */
+/*   Created: 2023/04/27 15:31:02 by dbredykh          #+#    #+#             */
+/*   Updated: 2023/06/19 15:59:28 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "../inc/libft.h"
 
-# include <stdio.h>
-# include <unistd.h>
-# include <signal.h>
-# include <stdlib.h>
-# include "../libft/inc/libft.h"
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+{
+	char		*dest;
+	size_t		i;
 
-#endif
+	dest = malloc(sizeof(char) * ft_strlen(s) + 1);
+	if (!dest)
+		return (NULL);
+	i = 0;
+	while (s[i])
+	{
+		dest[i] = f(i, s[i]);
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}
