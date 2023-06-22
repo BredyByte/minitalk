@@ -6,23 +6,23 @@
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 13:36:40 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/06/22 12:29:53 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/06/22 17:58:21 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inc/minitalk.h"
 
-static void	handler(int sig)
+void	handler(int sig)
 {
 	static int	i;
 	static int	c;
 
 	if (sig == SIGUSR1)
-		c += 1 << (7 - i);
+		c |= (0x01 << i);
 	i++;
 	if (i == 8)
 	{
-		ft_putchar_fd(c, 1);
+		ft_printf("%c", c);
 		i = 0;
 		c = 0;
 	}

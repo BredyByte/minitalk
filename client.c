@@ -6,7 +6,7 @@
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 13:36:16 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/06/22 17:29:06 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/06/22 17:55:32 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,17 @@ void	ft_send_byte(int pid, char c)
 {
 	int	b;
 
-	b = 7;
-	while (b >= 0)
+	b = 0;
+	while (b < 8)
 	{
-		if (c >> b & 1)
+		if ((c & (0x01 << b)) != 0)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
-		usleep(400);
-		b--;
+		usleep(100);
+		b++;
 	}
 }
-
 
 int	main(int argc, char **argv)
 {
@@ -45,7 +44,6 @@ int	main(int argc, char **argv)
 	if (argc == 3)
 	{
 		pid = ft_atoi(argv[1]);
-		signal(SIGUSR1, handler);
 		while (argv[2][i])
 		{
 			ft_send_byte(pid, argv[2][i]);
@@ -54,6 +52,9 @@ int	main(int argc, char **argv)
 		ft_send_byte(pid, '\n');
 	}
 	else
+	{
 		ft_printf("\033[91mError: wrong format.\033[0m\n");
+		return (1);
+	}
 	return (0);
 }
