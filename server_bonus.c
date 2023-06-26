@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 13:36:40 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/06/26 17:05:37 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/06/26 17:35:45 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	ft_handler(int sig_num, siginfo_t *sig_info, void *context)
 	static int	c;
 
 	(void) context;
-	(void) sig_info;
 	if (sig_num == SIGUSR1)
 		c |= (0x01 << i);
 	i++;
@@ -27,6 +26,7 @@ void	ft_handler(int sig_num, siginfo_t *sig_info, void *context)
 		ft_printf("%c", c);
 		i = 0;
 		c = 0;
+		kill(sig_info->si_pid, SIGUSR1);
 	}
 }
 
