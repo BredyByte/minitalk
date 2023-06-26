@@ -6,7 +6,7 @@
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 13:36:16 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/06/26 17:22:00 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/06/26 18:25:11 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_confirm(int signal, siginfo_t *sig_info, void *context)
 	(void) sig_info;
 	(void) context;
 	if (signal == SIGUSR1)
-		ft_putstr_fd("\nACK\n", 1);
+		ft_putstr_fd("\nRESP\n", 1);
 }
 
 void	ft_send_byte(int pid, char c)
