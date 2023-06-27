@@ -6,18 +6,16 @@
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 13:36:16 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/06/26 18:25:11 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/06/27 16:39:18 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inc/minitalk.h"
 
-void	ft_confirm(int signal, siginfo_t *sig_info, void *context)
+void	ft_confirm(int signal)
 {
-	(void) sig_info;
-	(void) context;
-	if (signal == SIGUSR1)
-		ft_putstr_fd("\nRESP\n", 1);
+	(void) signal;
+	ft_putstr_fd("\nRESP\n", 1);
 }
 
 void	ft_send_byte(int pid, char c)
@@ -40,7 +38,7 @@ int	main(int argc, char **argv)
 {
 	int					i;
 	int					pid;
-	struct sigaction	sig;
+	struct sigaction	sa;
 
 	i = 0;
 	if (argc != 3)
@@ -48,9 +46,9 @@ int	main(int argc, char **argv)
 		ft_printf("Error!");
 		return (1);
 	}
-	sig.sa_sigaction = ft_confirm;
+	sa.sa_handler = ft_confirm;
 	pid = ft_atoi(argv[1]);
-	sigaction(SIGUSR1, &sig, NULL);
+	sigaction(SIGUSR1, &sa, NULL);
 	while (argv[2][i])
 	{
 		ft_send_byte(pid, argv[2][i]);

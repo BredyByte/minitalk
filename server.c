@@ -6,7 +6,7 @@
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 13:36:40 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/06/26 17:05:37 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/06/27 16:39:45 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,15 @@ void	ft_handler(int sig_num, siginfo_t *sig_info, void *context)
 int	main(void)
 {
 	pid_t				pid;
-	struct sigaction	sig;
+	struct sigaction	sa;
 
 	pid = getpid();
 	ft_printf("PID: %d\n", pid);
-	sig.sa_sigaction = ft_handler;
+	sa.sa_sigaction = ft_handler;
 	while (1)
 	{
-		sigaction(SIGUSR1, &sig, NULL);
-		sigaction(SIGUSR2, &sig, NULL);
+		sigaction(SIGUSR1, &sa, NULL);
+		sigaction(SIGUSR2, &sa, NULL);
 		pause();
 	}
 	return (0);
