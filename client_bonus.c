@@ -6,7 +6,7 @@
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 13:36:16 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/06/27 16:39:18 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/06/27 18:05:37 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,6 @@ int	main(int argc, char **argv)
 		ft_send_byte(pid, argv[2][i]);
 		i++;
 	}
-	ft_send_byte(pid, '\n');
+	ft_send_byte(pid, '\0');
 	return (0);
 }

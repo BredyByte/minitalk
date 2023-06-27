@@ -6,7 +6,7 @@
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 13:36:40 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/06/27 16:39:27 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/06/27 18:06:08 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,13 @@ void	ft_handler(int sig_num, siginfo_t *sig_info, void *context)
 	if (i == 8)
 	{
 		ft_printf("%c", c);
+		if (c == '\0')
+		{
+			ft_printf("\n");
+			kill(sig_info->si_pid, SIGUSR1);
+		}
 		i = 0;
 		c = 0;
-		kill(sig_info->si_pid, SIGUSR1);
 	}
 }
 
