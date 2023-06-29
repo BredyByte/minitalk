@@ -6,7 +6,7 @@
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 13:36:40 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/06/29 18:40:22 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/06/29 18:46:09 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_handler(int sig_num, siginfo_t *sig_info, void *context)
 	i++;
 	if (i == 8)
 	{
-		write(1, &c, 1);
+		ft_putchar(c);
 		i = 0;
 		c = 0;
 		kill(sig_info->si_pid, SIGUSR2);
