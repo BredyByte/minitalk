@@ -6,7 +6,7 @@
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 13:36:16 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/06/27 18:05:37 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/06/29 18:44:35 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,21 @@ int	main(int argc, char **argv)
 	struct sigaction	sa;
 
 	i = 0;
-	if (argc != 3)
+	pid = ft_atoi(argv[1]);
+	if (argc != 3 || !pid)
 	{
-		ft_printf("Error!");
+		ft_putstr_fd("Arguments error!!!\n", 1);
 		return (1);
 	}
 	sa.sa_handler = ft_confirm;
-	pid = ft_atoi(argv[1]);
-	sigaction(SIGUSR1, &sa, NULL);
+	sa.sa_flags = SIGINT;
+	sigemptyset(&sa.sa_mask);
+	sigaction(SIGUSR2, &sa, NULL);
 	while (argv[2][i])
 	{
 		ft_send_byte(pid, argv[2][i]);
 		i++;
 	}
-	ft_send_byte(pid, '\0');
+	ft_send_byte(pid, '\n');
 	return (0);
 }

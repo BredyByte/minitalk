@@ -6,7 +6,7 @@
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 13:36:40 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/06/27 18:06:08 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/06/29 18:40:22 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,10 @@ void	ft_handler(int sig_num, siginfo_t *sig_info, void *context)
 	i++;
 	if (i == 8)
 	{
-		ft_printf("%c", c);
-		if (c == '\0')
-		{
-			ft_printf("\n");
-			kill(sig_info->si_pid, SIGUSR1);
-		}
+		write(1, &c, 1);
 		i = 0;
 		c = 0;
+		kill(sig_info->si_pid, SIGUSR2);
 	}
 }
 
@@ -42,11 +38,11 @@ int	main(void)
 	pid = getpid();
 	ft_printf("PID: %d\n", pid);
 	sa.sa_sigaction = ft_handler;
+	sa.sa_flags = SIGINT;
+	sigemptyset(&sa.sa_mask);
+	sigaction(SIGUSR1, &sa, NULL);
+	sigaction(SIGUSR2, &sa, NULL);
 	while (1)
-	{
-		sigaction(SIGUSR1, &sa, NULL);
-		sigaction(SIGUSR2, &sa, NULL);
 		pause();
-	}
 	return (0);
 }
