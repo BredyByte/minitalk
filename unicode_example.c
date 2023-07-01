@@ -1,42 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/19 13:36:40 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/07/01 15:18:32 by dbredykh         ###   ########.fr       */
+/*   Created: 2023/06/29 15:01:33 by dbredykh          #+#    #+#             */
+/*   Updated: 2023/06/29 15:15:52 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "inc/minitalk.h"
-
-void	ft_handler(int sig_num)
-{
-	static int	i;
-	static int	c;
-
-	if (sig_num == SIGUSR1)
-		c |= (0x01 << i);
-	i++;
-	if (i == 8)
-	{
-		ft_putchar(c);
-		i = 0;
-		c = 0;
-	}
-}
+#include "stdio.h"
 
 int	main(void)
 {
-	pid_t				pid;
+	unsigned char	emoji_bytes[4];
 
-	pid = getpid();
-	ft_printf("PID: %d\n", pid);
-	signal(SIGUSR1, ft_handler);
-	signal(SIGUSR2, ft_handler);
-	while (1)
-		pause();
+	emoji_bytes[0] = 0xF0;
+	emoji_bytes[1] = 0x9F;
+	emoji_bytes[2] = 0x98;
+	emoji_bytes[3] = 0x81;
+	printf("%c%c%c%c\n",
+		emoji_bytes[0], emoji_bytes[1], emoji_bytes[2], emoji_bytes[3]);
 	return (0);
 }

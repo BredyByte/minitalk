@@ -6,7 +6,7 @@
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 13:36:40 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/06/29 18:46:09 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/07/01 15:23:25 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ int	main(void)
 	pid = getpid();
 	ft_printf("PID: %d\n", pid);
 	sa.sa_sigaction = ft_handler;
-	sa.sa_flags = SIGINT;
-	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = 0;
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
 	while (1)
