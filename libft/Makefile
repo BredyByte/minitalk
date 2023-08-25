@@ -33,11 +33,9 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(ARFLAGS) $@ $(OBJ)
-	echo "\n$(G)[Compiled $(C)'$@' $(G)successfully]$(END)"
 
 bonus: $(OBJ) $(BONUS_OBJ)
 	$(ARFLAGS) $(NAME) $(OBJ) $(BONUS_OBJ)
-	echo "\n$(P)[Compiled $(C)'$@' $(G)successfully]\n$(END)"
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INC_PATH)/libft.h
 	mkdir -p $(OBJ_PATH)
@@ -45,10 +43,8 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INC_PATH)/libft.h
 
 clean:
 	$(REMOVE) $(OBJ_PATH)
-	echo "\n$(O)[Cleaned $(C) $(NAME) objects $(G)successfully]\n$(END)"
 
 fclean: clean
 	$(REMOVE) $(NAME)
-	echo "$(R)[Removed $(C)'$(NAME)' $(G)successfully]\n$(END)"
 
 re: fclean all
