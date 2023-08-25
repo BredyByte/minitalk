@@ -10,9 +10,11 @@ The main idea is to design a simple protocol to allow two processes to communica
 
 ## How it works
 
-The server establishes a listening thread that waits for signal messages. When a signal is received, it interprets the bits and appends them to a message buffer. Once the full message is received, it is printed out.
+It uses UNIX signals as the method of communication. The server process sets up signal handlers to receive data from the client. The client serially encodes a message into individual bits and sends each bit as a separate signal to the server.
 
-The client handles generating and sending the signals that represent the data. It uses signals to serially transmit each bit of a message to the server.
+On the receiving side, the server pieces the bits back together in a buffer. Once the full message is received, it is printed out. This demonstrates how to transfer data between processes without using traditional IPC mechanisms like pipes or sockets.
+
+Key aspects covered include threading with pthreads, signal handling, serialization of data across signals, and error handling. Completing Minitalk provides experience with core C skills and an understanding of basic IPC implemented at the system call level.
 
 ## Key Learning Outcomes
 
