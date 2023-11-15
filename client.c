@@ -6,7 +6,7 @@
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 13:36:16 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/06/29 18:20:41 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/11/15 09:44:29 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,13 @@ int	main(int argc, char **argv)
 	int					pid;
 
 	i = 0;
-	pid = ft_atoi(argv[1]);
-	if (argc != 3 || !pid)
+    pid = 0;
+	if (argc != 3 || !ft_atoi(argv[1]))
 	{
 		ft_putstr_fd("Arguments error!!!\n", 1);
 		return (1);
 	}
+    pid = ft_atoi(argv[1]);
 	while (argv[2][i])
 	{
 		ft_send_byte(pid, argv[2][i]);

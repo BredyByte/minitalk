@@ -6,7 +6,7 @@
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 13:36:16 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/06/29 18:44:35 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/11/15 09:48:39 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ int	main(int argc, char **argv)
 	struct sigaction	sa;
 
 	i = 0;
-	pid = ft_atoi(argv[1]);
-	if (argc != 3 || !pid)
+	if (argc != 3 || !ft_atoi(argv[1]))
 	{
 		ft_putstr_fd("Arguments error!!!\n", 1);
 		return (1);
 	}
+    pid = ft_atoi(argv[1]);
 	sa.sa_handler = ft_confirm;
 	sa.sa_flags = SIGINT;
 	sigemptyset(&sa.sa_mask);
