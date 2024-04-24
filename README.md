@@ -1,5 +1,7 @@
 # 📡 Minitalk 📡
 
+> This repository contains a "minitalk" project that is part of the École 42 curriculum.
+
 <img width="1224" alt="Screen Shot 2023-08-25 at 7 47 01 PM" src="https://github.com/Dvaid0805/42_minitalk/assets/81176650/88c36bd2-1554-44bd-819e-e4f2bf2036f0">
 
 Minitalk is a project to learn IPC (inter-process communication) in C by developing a small data exchange program.
